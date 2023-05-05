@@ -1,3 +1,6 @@
+# Descrição
+
+É um sistema de atendimento ao cliente que permite cadastrar um usuário que poderá registrar os clientes e os atendimentos realizados.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
