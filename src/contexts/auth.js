@@ -24,7 +24,6 @@ function AuthProvider({children}){
         await signInWithEmailAndPassword(auth,email,password)
         .then((value)=>{
             let uid= value.user.uid
-            getDoc()
         })
     }
 
