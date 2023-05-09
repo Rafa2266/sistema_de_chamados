@@ -8,11 +8,12 @@ export default function SignIn() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
 
-    const {signin}=useContext(AuthContext);
-    function handleSubmit(e){
+    const {signin, loadingAuth}=useContext(AuthContext);
+
+    async function handleSubmit(e){
         e.preventDefault();
         if(email!=='' && senha!==''){
-            signin(email,senha)
+            await signin(email,senha)
         }
     }
     return (
@@ -28,7 +29,7 @@ export default function SignIn() {
                     <input type="password" placeholder="********" value={senha}
                     onChange={(e)=>setSenha(e.target.value)} />
 
-                    <button type="submit" >Acessar</button>
+                    <button type="submit" >{loadingAuth ? "Carregando...":"Acessar"}</button>
 
                 </form>
                 <Link to="/register">Criar uma conta</Link>

@@ -22,9 +22,27 @@ function AuthProvider({children}){
     async function signin(email,password){
         setLoadingAuth(true)
         await signInWithEmailAndPassword(auth,email,password)
-        .then((value)=>{
+        .then(async (value)=>{
             let uid= value.user.uid
-        })
+            let docSnap=await getDoc(doc(db,"users",uid));
+
+            let data={
+                uid:uid,
+                nome:docSnap.data().nome,
+                email:value.user.email,
+                avatarUrl:docSnap.data().avatarUrl,
+            }
+
+            setUser(data)
+            storageUser(data)
+            setLoadingAuth(false)
+            toast.success("Logado com sucesso!!!")
+            navigate("/dashboard")
+        }).catch((error)=>{
+            console.log(error)
+            toast.error("Erro ao logar no sistema")
+            setLoadingAuth(false)
+           })
     }
 
     async function signup(nome,email,password){
